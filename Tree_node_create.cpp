@@ -1,101 +1,77 @@
-#include<stdio.h>
-#include<malloc.h>
-
-typedef struct BST
-{
- int data;
- struct BST *left;
- struct BST *right;
-}node;
-
-node *create();
-void insert(node*,node*);
-void preorder(node*);
-void inorder(node*);
-void postorder(node*);
-int main()
-{
-    char ch;
-    node *root=NULL,*temp;
-    do
-    {
-    	temp=create();
-        if (root==NULL)
-        {
-        root=temp;
-        }
-        else
-        {
-        insert(root,temp);
-        }
-        printf("Do you want to Continue or not? ");
-        scanf("%c",&ch);
-	}
-    while(ch=='Y'|| ch=='y');
-    scanf("%d",&ch);
-    printf("\nThe preorder traversal is: ");
-    preorder(root);
-    printf("\nThe inorder traversal is: ");
-    inorder(root);
-    printf("\nThe postorder traversal is: ");
-    postorder(root);
-    return 0;
-}
-
-node *create()
-{
-    node *temp;
-    temp=(node*)malloc(sizeof(node));
-    temp->left=NULL;
-    temp->right=NULL;
-    printf("Enter the value: ");
-    scanf("%d",&temp->data);
-    return temp;
-}
-void insert(node*root,node*temp)
-{
-    if(temp->data<root->data)
-    {
-        if(root->left!=NULL)
-        {
-            insert(root->left,temp);
-        }
-        root->left=temp;
-    }
-    if(temp->data>root->data)
-    {
-        if(root->right!=NULL)
-        {
-            insert(root->right,temp);
-        }
-        root->right=temp;
-    }
-}
-void preorder(node*root)
-{
-    if(root!=NULL)
-    {
-        printf("%d",root->data);
-        preorder(root->left);
-        preorder(root->right);
-    }
-}
-void inorder(node*root)
-{
-    if(root!=NULL)
-    {
-        inorder(root->left);
-        printf("%d",root->data);
-        inorder(root->right);
-    }
-   
-}
-void postorder(node*root)
-{
-    if(root!=NULL)
-    {
-        postorder(root->left);
-        postorder(root->right);
-        printf("%d",root->data);
-    }
+#include <stdio.h>  
+#include <stdlib.h>  
+  
+struct node {  
+    int element;  
+    struct node* left;  
+    struct node* right;  
+};  
+  
+/*To create a new node*/  
+struct node* createNode(int val)  
+{  
+    struct node* Node = (struct node*)malloc(sizeof(struct node));  
+    Node->element = val;  
+    Node->left = NULL;  
+    Node->right = NULL;  
+  
+    return (Node);  
+}  
+  
+/*function to traverse the nodes of binary tree in preorder*/  
+void traversePreorder(struct node* root)  
+{  
+    if (root == NULL)  
+        return;  
+    printf(" %d ", root->element);  
+    traversePreorder(root->left);  
+    traversePreorder(root->right);  
+}  
+  
+  
+/*function to traverse the nodes of binary tree in Inorder*/  
+void traverseInorder(struct node* root)  
+{  
+    if (root == NULL)  
+        return;  
+    traverseInorder(root->left);  
+    printf(" %d ", root->element);  
+    traverseInorder(root->right);  
+}  
+  
+/*function to traverse the nodes of binary tree in postorder*/  
+void traversePostorder(struct node* root)  
+{  
+    if (root == NULL)  
+        return;  
+    traversePostorder(root->left);  
+    traversePostorder(root->right);  
+    printf(" %d ", root->element);  
+}  
+  
+  
+int main()  
+{  
+    struct node* root = createNode(36);  
+    root->left = createNode(26);  
+    root->right = createNode(46);  
+    root->left->left = createNode(21);  
+    root->left->right = createNode(31);  
+    root->left->left->left = createNode(11);  
+    root->left->left->right = createNode(24);  
+    root->right->left = createNode(41);  
+    root->right->right = createNode(56);  
+    root->right->right->left = createNode(51);  
+    root->right->right->right = createNode(66);  
+  
+    printf("\n The Preorder traversal of given binary tree is -\n");  
+    traversePreorder(root);  
+      
+    printf("\n The Inorder traversal of given binary tree is -\n");  
+    traverseInorder(root);  
+      
+    printf("\n The Postorder traversal of given binary tree is -\n");  
+    traversePostorder(root);  
+  
+    return 0;  
 }

@@ -1,13 +1,17 @@
 #include<stdio.h>
 int main()
 {
-    int a[]={10,20,30,99,50,60,70,80,90};
-    int i,j,c,temp=0;
-    int n=sizeof(a)/sizeof(a[0]);
-    /*The first loop will be executed upto the (last-1) index i.e, (len of array-1)*/
+    int a[100];
+    int i,j,n,temp=0;
+    printf("Enter the number of elements: ");
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        printf("Enter the element: ");
+        scanf("%d",&a[i]);
+    }
     for(i=0;i<n-1;i++)
     {
-        /*The second loop will be executed upto the last index i.e, (len of array-1)*/
         for(j=i+1;j<n;j++)
         {
             if(a[i]>a[j])
@@ -18,9 +22,10 @@ int main()
             }
         }
     }
-    for(c=0;c<n;c++)
+    printf("The sorted array is: \n");
+    for(i=0;i<n;i++)
     {
-        printf("%d",a[c]);
+        printf("%d\t",a[i]);
     }
     return 0;
 }

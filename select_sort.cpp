@@ -6,9 +6,9 @@ int main()
     printf("Enter the number of elements:" );
     scanf("%d",&n);
     printf("Enter the %d elements\n",n);
-    for(i=0;i<n-1;i++)
+    for(i=0;i<n;i++)
     {
-        scanf("%d\n",&a[i]);
+        scanf("%d",&a[i]);
     }
     for(i=0;i<n;i++)
     {
