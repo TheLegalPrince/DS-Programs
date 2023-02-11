@@ -1,7 +1,7 @@
 #include<stdio.h>
 int main()
 {
-    int i,j,temp,n;
+    int i,j,temp,n,min;
     int a[100];
     printf("Enter the number of elements:" );
     scanf("%d",&n);
@@ -10,19 +10,17 @@ int main()
     {
         scanf("%d",&a[i]);
     }
-    for(i=0;i<n;i++)
+    for(i=0;i<n-1;i++)
+        min=i;
     {
         for(j=i+1;j<n;j++)
         {
-            if(a[i]>a[j])
+            if(a[j]<a[min])
             {
-                temp=a[i];
-                a[i]=a[j];
-                a[j]=temp;
-            }
-            else
-            {
-                continue;
+                min=j;
+                temp=a[min];
+                a[min]=a[i];
+                a[i]=temp;
             }
         }
     }
